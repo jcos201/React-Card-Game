@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
+import GameBoard from './pages/GameBoard';
 
 const Container = styled.div `
   background-color: #3a5f75;
@@ -12,7 +13,8 @@ const Container = styled.div `
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  padding-top: 10px;
   font-size: calc(10px + 2vmin);
   color: white;
 `
@@ -25,6 +27,9 @@ function App() {
       <Switch>
         <Route exact path="/" render={props => 
         <HomePage/>
+      } />
+        <Route exact path="/blackjack" render={props => 
+        <GameBoard/>
       } />
       </Switch>
     </Container>

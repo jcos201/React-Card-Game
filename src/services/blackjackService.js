@@ -30,7 +30,8 @@ function drawCards(num) {
     }).then(data => {
         let arr = [];
         data.cards.map(card => {
-            arr.push([card])
+            arr.push([card]);
+            return arr;
         })
         return arr;
     })
@@ -42,15 +43,18 @@ function calculateHand(cards) {
             let val = card.value;
             if(val === "KING" || val === "JACK" || val === "QUEEN"){
                 return currentValue += 10;
-            } else if(val !== "ACE") {
+            } else if(val === "ACE") {
+                console.log('ACE')
+                if(val < 12) {
+                    return currentValue += 10;
+                } else {
+                    return currentValue += 1;
+                }
+            } else {
                 let num = parseInt(val);
 
                 return currentValue += num;
-            } else if(val < 12) {
-                return currentValue += 10;
-            } else {
-                return currentValue += 1;
-            }
+            } 
         }
 
         return cards.reduce(reducer, 0);
